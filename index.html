@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Erin Cafe interactive QR menu" />
+  <title>Erin Cafe | QR Interactive Menu</title>
+  <link rel="preload" as="image" href="assets/erin-logo-mark.png" />
+  <style>
+    :root{
+      --cream:#fbf3e7; --paper:#fffaf2; --ink:#24311e; --brown:#68432e; --brown2:#8a6044;
+      --muted:#7f7468; --line:rgba(104,67,46,.18); --green:#354a2d; --green2:#6f7e5f;
+      --shadow:0 24px 60px rgba(77,53,33,.14); --radius:22px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--cream);color:#1f1b16;font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 8%,rgba(111,126,95,.16),transparent 24rem),radial-gradient(circle at 88% 14%,rgba(138,96,68,.14),transparent 24rem),linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,250,242,.2));z-index:-2}
+    .hero{position:relative;min-height:68svh;display:grid;place-items:center;padding:2.2rem 1.1rem 7rem;overflow:hidden;background:linear-gradient(180deg,rgba(20,18,15,.34),rgba(20,18,15,.45)),url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1800&auto=format&fit=crop&q=82') center/cover;color:white;text-align:center}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:42%;background:linear-gradient(0deg,var(--cream),transparent)}
+    .brand{position:relative;z-index:1;display:grid;justify-items:center;gap:.8rem}.logo-mark{width:clamp(118px,24vw,184px);aspect-ratio:1;object-fit:cover;object-position:center 35%;border-radius:999px;background:white;padding:.18rem;box-shadow:0 24px 70px rgba(0,0,0,.32)}
+    .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:.78rem;opacity:.92}.brand h1{margin:.1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.3rem,8vw,5.6rem);line-height:.95;letter-spacing:.08em;text-shadow:0 8px 24px rgba(0,0,0,.24)}
+    .tagline{margin:.2rem auto 0;max-width:650px;letter-spacing:.22em;text-transform:uppercase;font-size:clamp(.78rem,2.3vw,1rem);opacity:.9}.arrow{font-size:2rem;opacity:.82;animation:bob 1.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(8px)}}
+    .menu-shell{width:min(1220px,95vw);margin:-4.2rem auto 0;position:relative;z-index:5;background:rgba(255,250,242,.86);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);backdrop-filter:blur(18px);overflow:clip}
+    .tools{position:sticky;top:0;z-index:30;padding:1rem;background:rgba(255,250,242,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}.tool-row{display:flex;gap:.7rem;align-items:center}.chips{display:flex;gap:.55rem;overflow-x:auto;scrollbar-width:none;flex:1}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:white;color:var(--brown);padding:.72rem .92rem;border-radius:999px;font-weight:800;white-space:nowrap;cursor:pointer;box-shadow:0 8px 18px rgba(77,53,33,.06)}.chip.active{background:var(--green);border-color:var(--green);color:white}.search{min-width:220px;display:flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;background:white;padding:.66rem .88rem}.search input{width:100%;border:0;background:transparent;outline:0;font-size:.95rem;color:var(--brown)}
+    .section{padding:1.15rem}.section-head{display:flex;align-items:center;justify-content:center;gap:.65rem;margin:.7rem 0 1rem;color:var(--green)}.section-head h2{font-family:Georgia,serif;letter-spacing:.08em;text-transform:uppercase;margin:0;font-size:clamp(1.15rem,3vw,1.55rem)}.leaf{font-size:1.1rem}.signature-stage{position:relative;height:clamp(390px,58vh,640px);margin:.4rem .2rem 1.4rem;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.78),transparent 18rem),linear-gradient(135deg,rgba(53,74,45,.1),rgba(138,96,68,.1));perspective:1800px}.signature-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,250,242,.2),rgba(255,250,242,.86));pointer-events:none}.signature-hint{position:absolute;z-index:4;left:50%;bottom:1rem;transform:translateX(-50%);padding:.5rem .8rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,250,242,.76);color:var(--muted);font-size:.78rem;backdrop-filter:blur(12px);white-space:nowrap}.signature-ring{position:absolute;inset:0;transform-style:preserve-3d}.sig-card{position:absolute;left:50%;top:50%;width:min(250px,64vw);height:min(330px,48vh);margin-left:calc(min(250px,64vw)/-2);margin-top:calc(min(330px,48vh)/-2);border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.5);box-shadow:0 26px 70px rgba(50,32,20,.22);background:#ddd;transform-style:preserve-3d;transition:opacity .25s linear,filter .25s linear,box-shadow .25s linear}.sig-card.is-front{box-shadow:0 34px 90px rgba(50,32,20,.34);filter:saturate(1.08) brightness(1.06)}.sig-card img{width:100%;height:100%;object-fit:cover}.sig-card:after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.82))}.sig-caption{position:absolute;z-index:1;left:1rem;right:1rem;bottom:.9rem;color:white;text-shadow:0 2px 10px rgba(0,0,0,.35)}.sig-caption b{display:block;text-transform:uppercase;font-size:.95rem;letter-spacing:.04em}.sig-caption span{display:flex;justify-content:space-between;gap:.6rem;margin-top:.3rem;font-size:.82rem;opacity:.95}.sig-caption strong{font-size:1rem}.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:0 1.15rem 1.15rem}.menu-section{background:rgba(255,255,255,.58);border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:0 14px 34px rgba(77,53,33,.07);scroll-margin-top:95px}.menu-section.wide{grid-column:1/-1}.menu-title{display:flex;align-items:baseline;gap:.55rem;margin:0 0 .9rem;color:var(--green);font-family:Georgia,serif;text-transform:uppercase;letter-spacing:.04em}.menu-title small{font-family:Inter,sans-serif;font-size:.7rem;color:#1f1b16;letter-spacing:.04em}.items{display:grid;gap:.35rem}.menu-section.wide .items{grid-template-columns:repeat(2,1fr);column-gap:1.2rem}.item{display:grid;grid-template-columns:72px 1fr auto;gap:.8rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line);cursor:pointer;transform:translateY(16px);opacity:0;transition:.45s cubic-bezier(.2,.8,.2,1),background .2s}.item.reveal{transform:translateY(0);opacity:1}.item:hover{background:rgba(111,126,95,.07);border-radius:14px;padding-left:.45rem;padding-right:.45rem}.thumb{width:72px;height:58px;border-radius:12px;object-fit:cover;box-shadow:0 8px 18px rgba(77,53,33,.12)}.item.no-photo{grid-template-columns:1fr auto}.item.no-photo .thumb{display:none}.name{font-size:1rem;font-weight:700}.thai{color:#4d453d;font-size:.84rem;margin-top:.16rem}.badge{display:inline-block;margin-top:.35rem;padding:.2rem .48rem;border-radius:999px;background:#efe6d7;color:#5b493a;font-size:.7rem}.price{font-family:Georgia,serif;color:var(--brown);font-size:1.42rem;font-weight:900;white-space:nowrap}.footer{background:linear-gradient(135deg,#405038,#24311e);color:white;margin-top:2rem;padding:2rem 1rem}.footer-grid{width:min(1120px,92vw);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.footer b{display:block;margin-bottom:.35rem}.note{text-align:center;color:var(--muted);font-size:.85rem;padding:.3rem 1rem 1.6rem}
+    .modal{position:fixed;inset:0;background:rgba(25,18,13,.62);display:none;place-items:end center;z-index:100;padding:1rem;backdrop-filter:blur(12px)}.modal.open{display:grid}.modal-card{width:min(720px,100%);max-height:92svh;background:var(--paper);border-radius:28px;overflow:auto;box-shadow:0 36px 100px rgba(0,0,0,.32);animation:pop .22s both}@keyframes pop{from{transform:translateY(20px) scale(.98);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}.modal-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}.modal-body{padding:1.2rem}.modal-head{display:flex;justify-content:space-between;gap:1rem}.modal-head h3{margin:0;font-family:Georgia,serif;color:var(--green);font-size:1.8rem}.close{border:0;background:#eee1cf;border-radius:999px;width:42px;height:42px;font-size:1.5rem;cursor:pointer}.modal p{color:var(--muted);line-height:1.7}.hidden{display:none!important}
+    @media (max-width:900px){.signature-stage{height:500px}.grid{grid-template-columns:1fr}.menu-section.wide .items{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.tool-row{display:grid}.search{min-width:0}}
+    @media (max-width:560px){.hero{min-height:58svh}.signature-stage{height:430px;margin-left:-.2rem;margin-right:-.2rem}.sig-card{width:min(210px,66vw);height:292px;margin-left:calc(min(210px,66vw)/-2);margin-top:-146px}.signature-hint{font-size:.72rem}.menu-shell{width:100%;border-radius:24px 24px 0 0}.section,.grid{padding-left:.8rem;padding-right:.8rem}.item{grid-template-columns:64px 1fr auto;gap:.65rem}.thumb{width:64px;height:54px}.name{font-size:.95rem}.price{font-size:1.18rem}.footer-grid{grid-template-columns:1fr}.logo-mark{width:132px}.tagline{letter-spacing:.14em}.tools{padding:.75rem}.chip{padding:.62rem .78rem}}
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="brand">
+      <img class="logo-mark" src="assets/erin-logo-mark.png" alt="Erin Cafe logo mark" />
+      <div class="kicker">Interactive QR Menu</div>
+      <h1>MENU</h1>
+      <p class="tagline">Good food, good coffee, good day.</p>
+      <a class="arrow" href="#menu" aria-label="Go to menu">⌄</a>
+    </div>
+  </header>
+  <main class="menu-shell" id="menu">
+    <nav class="tools" aria-label="Menu navigation">
+      <div class="tool-row">
+        <div class="chips" id="chips"></div>
+        <label class="search">⌕ <input id="search" type="search" placeholder="Search menu..." /></label>
+      </div>
+    </nav>
+    <section class="section" id="signatureBlock">
+      <div class="section-head"><span class="leaf">☙</span><h2>Signature Picks</h2></div>
+      <div class="signature-stage" id="signatureStage"><div class="signature-ring" id="signature"></div><div class="signature-hint">Scroll here or wait for auto-rotate</div></div>
+    </section>
+    <div class="grid" id="sections"></div>
+    <div class="note">ภาพอาหารใช้เพื่อการนำเสนอเมนูเท่านั้น / Images are for menu presentation only.</div>
+  </main>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><b>Opening Hours</b>08:00 – 18:00</div>
+      <div><b>Find Us</b>Erin Cafe<br>Bang Yai, Nonthaburi</div>
+      <div><b>Contact</b>085-917-8422</div>
+      <div><b>Social</b>Facebook • Instagram • Google Maps</div>
+    </div>
+  </footer>
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <article class="modal-card">
+      <img id="modalImg" alt="" />
+      <div class="modal-body">
+        <div class="modal-head"><div><h3 id="modalName"></h3><div class="thai" id="modalThai"></div></div><button class="close" id="close">×</button></div>
+        <div class="price" id="modalPrice"></div><p id="modalMeta"></p>
+      </div>
+    </article>
+  </div>
+  <script>
+    const img = {
+      espresso:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=900&auto=format&fit=crop&q=82',
+      thaiEspresso:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=900&auto=format&fit=crop&q=82',
+      americano:'https://images.unsplash.com/photo-1494314671902-399b18174975?w=900&auto=format&fit=crop&q=82',
+      orangeAmericano:'https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=900&auto=format&fit=crop&q=82',
+      latte:'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=900&auto=format&fit=crop&q=82',
+      cappuccino:'https://images.unsplash.com/photo-1534778101976-62847782c213?w=900&auto=format&fit=crop&q=82',
+      mocha:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=900&auto=format&fit=crop&q=82',
+      thaiTea:'https://images.unsplash.com/photo-1558857563-b371033873b8?w=900&auto=format&fit=crop&q=82',
+      cocoa:'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=900&auto=format&fit=crop&q=82',
+      lemonTea:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=900&auto=format&fit=crop&q=82',
+      ribeye:'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=900&auto=format&fit=crop&q=82',
+      picanha:'https://images.unsplash.com/photo-1558030006-450675393462?w=900&auto=format&fit=crop&q=82',
+      porkSteak:'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=900&auto=format&fit=crop&q=82',
+      chickenSteak:'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=900&auto=format&fit=crop&q=82',
+      seaBass:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=900&auto=format&fit=crop&q=82',
+      rice:'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=900&auto=format&fit=crop&q=82',
+      friedEgg:'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=900&auto=format&fit=crop&q=82',
+      softDrink:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=900&auto=format&fit=crop&q=82',
+      ice:'https://images.unsplash.com/photo-1615486364462-ef6363adbc18?w=900&auto=format&fit=crop&q=82',
+      basil:'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=900&auto=format&fit=crop&q=82',
+      shrimpRice:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=900&auto=format&fit=crop&q=82',
+      friedRice:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=900&auto=format&fit=crop&q=82',
+      crabRice:'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=900&auto=format&fit=crop&q=82',
+      omelette:'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=900&auto=format&fit=crop&q=82'
+    };
+    const groups = [
+      {id:'coffee', title:'Coffee Favorites', note:'HOT / ICE', wide:false, items:[
+        ['Espresso Shot','เอสเพรสโซ่ช็อต',50,'Hot only',img.espresso],['Espresso Thai style','เอสเพรสโซ่สไตล์ไทย',70,'Ice only',img.thaiEspresso],['Americano','อเมริกาโน่',65,'',img.americano],['Orange Americano','อเมริกาโน่ส้ม',75,'',img.orangeAmericano],['Latte','ลาเต้',70,'',img.latte],['Cappuccino','คาปูชิโน่',70,'',img.cappuccino],['Mocha','มอคค่า',75,'',img.mocha]
+      ]},
+      {id:'noncoffee', title:'Non-Coffee', note:'HOT / ICE', wide:false, items:[['Thai Milk Tea','ชาไทย',70,'',img.thaiTea],['Cocoa','โกโก้',70,'',img.cocoa],['Lemon Tea','ชามะนาว',75,'',img.lemonTea]]},
+      {id:'steak', title:'Steak', note:'', wide:false, items:[['Sous vide Ribeye Steak','สเต๊กริบอาย',280,'220–250 g',img.ribeye],['Sous vide Picanha Steak','สเต๊กพิคานย่า',280,'220–250 g',img.picanha],['Pork Steak','สเต๊กหมู',170,'150 g',img.porkSteak],['Chicken Steak','สเต๊กไก่',150,'150 g',img.chickenSteak],['Grilled Sea Bass','ปลากะพงย่าง',240,'150 g',img.seaBass]]},
+      {id:'sides', title:'Sides & Drinks', note:'', wide:false, items:[['Steamed Rice','ข้าวสวย',15,'',img.rice],['Fried Egg','ไข่ดาว',15,'',img.friedEgg],['Soft Drink','น้ำอัดลม',25,'',img.softDrink],['Ice','น้ำแข็ง',5,'',img.ice]]},
+      {id:'rice', title:'Rice Dishes', note:'', wide:true, items:[['Basil Pork with Rice','ข้าวราดกะเพราหมู (ชิ้น / สับ)',75,'',img.basil],['Basil Chicken with Rice','ข้าวราดกะเพราไก่',75,'',img.basil],['Basil Beef with Rice','ข้าวราดกะเพราเนื้อ (ชิ้น / สับ)',95,'',img.basil],['Basil Shrimp with Rice','ข้าวราดกะเพรากุ้ง',110,'',img.shrimpRice],['Fried Rice Pork / Chicken','ข้าวผัดหมู / ไก่',80,'',img.friedRice],['Fried Rice Beef','ข้าวผัดเนื้อ',100,'',img.friedRice],['Fried Rice Shrimp','ข้าวผัดกุ้ง',115,'',img.shrimpRice],['Fried Rice Crab','ข้าวผัดปู',130,'',img.crabRice],['Fried Rice Thai Sausage','ข้าวผัดแหนม',110,'',img.friedRice],['Omelette with Minced Pork on Rice','ข้าวไข่เจียวหมูสับ',80,'',img.omelette]]}
+    ];
+    const flat = groups.flatMap(g=>g.items.map(i=>({group:g.title,id:g.id,name:i[0],thai:i[1],price:i[2],badge:i[3],photo:i[4]})));
+    const sigNames = ['Orange Americano','Mocha','Sous vide Ribeye Steak','Basil Shrimp with Rice','Fried Rice Crab'];
+    const chips = document.getElementById('chips'), sections = document.getElementById('sections'), search = document.getElementById('search'), signature = document.getElementById('signature');
+    let active='all';
+    function makeChip(id,label){const b=document.createElement('button');b.className='chip'+(id===active?' active':'');b.textContent=label;b.onclick=()=>{active=id;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');render();};chips.appendChild(b)}
+    makeChip('all','All'); groups.forEach(g=>makeChip(g.id,g.title));
+    const sigItems = sigNames.map(n=>flat.find(x=>x.name===n)).filter(Boolean);
+    let sigRotation = 0, sigScrolling = false, sigScrollTimer = null;
+    const sigAngle = 360 / sigItems.length;
+    function sigRadius(){return Math.min(520, Math.max(250, window.innerWidth * .52))}
+    sigItems.forEach((m,i)=>{const c=document.createElement('article');c.className='sig-card';c.dataset.angle=String(i*sigAngle);c.innerHTML=`<img src="${m.photo}" alt="${m.name}"><div class="sig-caption"><b>${m.name}</b><span>${m.thai}<strong>${m.price}.-</strong></span></div>`;c.onclick=()=>openModal(m);signature.appendChild(c)});
+    function renderSignature(){
+      signature.style.transform = `rotateY(${sigRotation}deg)`;
+      const r = sigRadius();
+      signature.querySelectorAll('.sig-card').forEach(card=>{
+        const a = Number(card.dataset.angle);
+        const rel = (a + sigRotation + 360) % 360;
+        const norm = Math.abs(rel > 180 ? 360 - rel : rel);
+        const opacity = Math.max(.22, 1 - norm / 150);
+        const scale = norm < 22 ? 1.08 : 1;
+        card.style.transform = `rotateY(${a}deg) translateZ(${r}px) scale(${scale})`;
+        card.style.opacity = opacity;
+        card.classList.toggle('is-front', norm < 22);
+      });
+    }
+    function signatureScroll(){
+      const stage = document.getElementById('signatureStage');
+      const rect = stage.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+      sigRotation = progress * 360;
+      sigScrolling = true;
+      clearTimeout(sigScrollTimer);
+      sigScrollTimer = setTimeout(()=>sigScrolling=false,160);
+      renderSignature();
+    }
+    function animateSignature(){if(!sigScrolling){sigRotation += .035; renderSignature()} requestAnimationFrame(animateSignature)}
+    window.addEventListener('scroll', signatureScroll, {passive:true});
+    window.addEventListener('resize', renderSignature);
+    renderSignature(); animateSignature();
+    function render(){const q=search.value.trim().toLowerCase();sections.innerHTML='';groups.forEach(g=>{if(active!=='all'&&active!==g.id)return; const items=g.items.map(i=>({group:g.title,id:g.id,name:i[0],thai:i[1],price:i[2],badge:i[3],photo:i[4]})).filter(m=>[m.name,m.thai,m.group,m.badge].join(' ').toLowerCase().includes(q)); if(!items.length)return; const sec=document.createElement('section');sec.className='menu-section'+(g.wide?' wide':'');sec.id=g.id;sec.innerHTML=`<h2 class="menu-title">${g.title} ${g.note?`<small>(${g.note})</small>`:''}</h2><div class="items"></div>`; const wrap=sec.querySelector('.items');items.forEach((m,i)=>{const el=document.createElement('article');el.className='item';el.innerHTML=`<img class="thumb" src="${m.photo}" alt="${m.name}" loading="lazy"><div><div class="name">${m.name}</div><div class="thai">${m.thai}</div>${m.badge?`<span class="badge">${m.badge}</span>`:''}</div><div class="price">${m.price}</div>`;el.onclick=()=>openModal(m);wrap.appendChild(el);setTimeout(()=>el.classList.add('reveal'),i*35)});sections.appendChild(sec)}); if(!sections.children.length){sections.innerHTML='<section class="menu-section wide"><p style="text-align:center;color:var(--muted)">ไม่พบรายการเมนู / No menu found.</p></section>'}}
+    function openModal(m){document.getElementById('modalImg').src=m.photo;document.getElementById('modalImg').alt=m.name;document.getElementById('modalName').textContent=m.name;document.getElementById('modalThai').textContent=m.thai;document.getElementById('modalPrice').textContent=m.price+'.-';document.getElementById('modalMeta').textContent=`Category: ${m.group}${m.badge?' · '+m.badge:''}`;document.getElementById('modal').classList.add('open')}
+    document.getElementById('close').onclick=()=>document.getElementById('modal').classList.remove('open');document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('open')};window.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal').classList.remove('open')});search.addEventListener('input',render);render();
+  </script>
+</body>
+</html>

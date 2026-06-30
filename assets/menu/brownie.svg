@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4a261e"/><stop offset="1" stop-color="#d7a278"/></linearGradient>
+    <radialGradient id="light" cx="35%" cy="22%" r="60%"><stop stop-color="#ffffff" stop-opacity=".42"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="900" height="1200" rx="64" fill="url(#bg)"/>
+  <rect width="900" height="1200" rx="64" fill="url(#light)"/>
+  <circle cx="715" cy="185" r="115" fill="#fff" opacity=".13"/>
+  <circle cx="145" cy="935" r="170" fill="#000" opacity=".09"/>
+  <g filter="url(#shadow)">
+    <rect x="155" y="270" width="590" height="520" rx="54" fill="#fff7ea" opacity=".92"/>
+    <circle cx="450" cy="500" r="152" fill="#4a261e" opacity=".9"/>
+    <circle cx="450" cy="500" r="112" fill="#d7a278" opacity=".75"/>
+    <text x="450" y="544" text-anchor="middle" font-size="148" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">🍫</text>
+  </g>
+  <text x="450" y="895" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" fill="#fff">Chocolate Brownie</text>
+  <text x="450" y="955" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" fill="#fff" opacity=".76">Erin Cafe · Dessert</text>
+</svg>
