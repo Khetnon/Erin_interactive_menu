@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Erin Café Menu Master v3.4.2 White Background</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#382f26;
+      --body:#26211d;
+      --muted:#5c5149;
+      --line:rgba(117,97,78,.22);
+      --line-strong:rgba(117,97,78,.33);
+      --cream:rgba(233,224,213,.72);
+      --sage:#718367;
+      --hot:#e7ddd0;
+      --ice:#c4d7df;
+      --footer:#e4dace;
+      --en:13.2px;
+      --th:10.7px;
+      --price:19px;
+      --section:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#ffffff;color:var(--text)}
+    body{font-family:"Noto Sans Thai","Sarabun",Inter,"Helvetica Neue",Arial,sans-serif;}
+    .sheet{
+      position:relative;
+      width:794px;
+      height:1123px;
+      margin:24px auto;
+      overflow:hidden;
+      background:var(--bg);
+      box-shadow:0 22px 60px rgba(42,31,23,.10);
+    }
+
+    .title{position:absolute;left:54px;top:80px;font-family:Georgia,"Times New Roman",serif;font-size:77px;line-height:.92;font-weight:400;letter-spacing:.14em;color:#3a2f26}
+    .short-line{position:absolute;left:55px;top:199px;width:60px;height:1px;background:rgba(56,47,38,.62)}
+    .tagline{position:absolute;left:55px;top:226px;font-size:10.5px;letter-spacing:.32em;color:var(--muted)}
+    .brand-logo{position:absolute;right:54px;top:38px;width:208px;height:186px;object-fit:contain;opacity:.92}
+    .rule-top{position:absolute;left:36px;right:36px;top:286px;height:1px;background:var(--line-strong)}
+    .rule-mid{position:absolute;left:383px;top:286px;width:1px;height:790px;background:rgba(117,97,78,.28)}
+    .rule-right{position:absolute;left:383px;right:36px;top:710px;height:1px;background:rgba(117,97,78,.28)}
+
+    /* v3.4.2: white/transparent page background for colored-paper printing. */
+    /* One system for every menu item */
+    .menu-en{font-size:var(--en);line-height:1.12;font-weight:400;letter-spacing:-.012em;color:var(--body);margin:0}
+    .menu-th{font-size:var(--th);line-height:1.16;font-weight:400;color:var(--muted);margin:3px 0 0 0}
+    .price{font-family:Georgia,"Times New Roman",serif;font-size:var(--price);line-height:1;font-weight:400;text-align:right;color:#46382e;letter-spacing:.01em;margin-top:1px;font-variant-numeric:tabular-nums lining-nums}
+
+    .section{position:absolute;z-index:2}
+    .section-header{height:46px;display:flex;align-items:center;gap:19px;margin-bottom:14px}
+    .icon-circle{width:44px;height:44px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+    .icon-circle svg{width:25px;height:25px;stroke:var(--text);fill:none;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+    .section-title{font-size:var(--section);font-weight:700;letter-spacing:.09em;line-height:1;color:#3b3128;white-space:nowrap}
+    .section-sub{font-size:10px;font-weight:400;letter-spacing:.06em;margin-left:4px;color:#2f2924;vertical-align:middle}
+
+    .item{position:relative;display:grid;grid-template-columns:1fr auto 42px;column-gap:12px;align-items:start;min-height:41px;margin:0 0 3px 0;padding:0 0 5px 0;border-bottom:1px dotted var(--line)}
+    .badge{display:inline-block;min-width:58px;height:18px;padding:0 8px;margin-top:3px;border-radius:5px;font-size:8px;line-height:18px;text-align:center;letter-spacing:.05em;color:#52483f;background:var(--hot);white-space:nowrap}
+    .badge.ice{background:var(--ice)}
+
+    #coffee{left:47px;top:318px;width:319px}
+    #noncoffee{left:47px;top:703px;width:319px}
+    #sides{left:47px;top:907px;width:319px}
+    #steak{left:413px;top:318px;width:334px}
+    #rice{left:413px;top:728px;width:334px}
+
+    .sides-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:7px;width:319px;margin-top:0;padding-left:0}
+    .side-mini{display:grid;grid-template-columns:1fr 30px;column-gap:8px;min-height:43px;border-bottom:1px dotted var(--line);padding-bottom:5px}
+    .side-mini .price{font-size:var(--price);margin-top:1px}
+
+    .steak-row{position:relative;min-height:58px;margin-bottom:5px;padding-bottom:6px;border-bottom:1px dotted var(--line)}
+    .steak-row .gram{position:absolute;left:128px;top:23px;width:76px;height:18px;border-radius:5px;background:#e8ded0;font-size:8.5px;line-height:18px;text-align:center;color:#52483f}
+    .steak-row .price{position:absolute;right:0;top:7px;width:45px;font-size:var(--price);margin:0}
+
+    .rice-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;position:relative;margin-top:-1px}
+    .rice-grid::after{content:"";position:absolute;left:50%;top:5px;bottom:4px;width:1px;background:rgba(117,97,78,.18)}
+    .rice-item{display:grid;grid-template-columns:1fr 32px;column-gap:7px;min-height:47px;border-bottom:1px dotted rgba(117,97,78,.18);padding-bottom:3px;margin-bottom:2px}
+    .rice-item .price{font-size:var(--price);margin-top:1px}
+
+    .footer-band{position:absolute;left:0;right:0;bottom:0;height:48px;background:transparent;z-index:3}
+    .footer-note{position:absolute;left:118px;bottom:11px;width:185px;height:36px;color:var(--text);z-index:4}
+    .footer-note .thanks{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:19px;line-height:1.05;letter-spacing:.03em;color:#5b4b3e}
+    .footer-note .support{font-size:8.8px;line-height:1.1;letter-spacing:.23em;color:var(--muted);margin-top:4px}
+    .footer{position:absolute;bottom:12px;left:315px;width:280px;height:28px;display:flex;align-items:center;gap:20px;color:var(--text);font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:15px;font-weight:400;letter-spacing:.16em;z-index:4}
+    .footer::before{content:"";width:1px;height:32px;background:rgba(117,97,78,.34);margin-right:12px}
+    .phone-icon{width:31px;height:31px;border:1px solid rgba(56,47,38,.52);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:0}
+    @media print{@page{size:A4;margin:0}html,body{background:white;width:210mm;height:297mm}.sheet{margin:0;box-shadow:none;width:210mm;height:297mm}}
+  </style>
+</head>
+<body>
+<main class="sheet" aria-label="Erin Cafe Menu">
+  <div class="title">MENU</div>
+  <div class="short-line"></div>
+  <div class="tagline">IN PERFECT HARMONY</div>
+  <img class="brand-logo" src="assets/erin-logo-lineart-full.png" alt="Erin Cafe logo illustration">
+  <div class="rule-top"></div><div class="rule-mid"></div><div class="rule-right"></div>
+
+  <section class="section" id="coffee">
+    <header class="section-header"><div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M7 13h14v5a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-5Z"/><path d="M21 14h2.5a3 3 0 0 1 0 6H21"/><path d="M6 25h18"/><path d="M11 9c-1-1 1-2 0-3M15 9c-1-1 1-2 0-3M19 9c-1-1 1-2 0-3"/></svg></div><div><span class="section-title">COFFEE FAVORITES</span> <span class="section-sub">(HOT / ICE)</span></div></header>
+    <div class="items">
+      <div class="item"><div><div class="menu-en">Espresso Shot</div><div class="menu-th">เอสเพรสโซ่ช็อต</div></div><span class="badge">HOT ONLY</span><div class="price">50</div></div>
+      <div class="item"><div><div class="menu-en">Espresso Thai style</div><div class="menu-th">เอสเพรสโซสไตล์ไทย</div></div><span class="badge ice">ICE ONLY</span><div class="price">70</div></div>
+      <div class="item"><div><div class="menu-en">Americano</div><div class="menu-th">อเมริกาโน</div></div><span></span><div class="price">65</div></div>
+      <div class="item"><div><div class="menu-en">Orange Americano</div><div class="menu-th">อเมริกาโนส้ม</div></div><span></span><div class="price">75</div></div>
+      <div class="item"><div><div class="menu-en">Latte</div><div class="menu-th">ลาเต้</div></div><span></span><div class="price">70</div></div>
+      <div class="item"><div><div class="menu-en">Cappuccino</div><div class="menu-th">คาปูชิโน่</div></div><span></span><div class="price">70</div></div>
+      <div class="item"><div><div class="menu-en">Mocha</div><div class="menu-th">มอคค่า</div></div><span></span><div class="price">75</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="noncoffee">
+    <header class="section-header"><div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M10 10h12l-2 16h-8L10 10Z"/><path d="M13 10 12 5h9"/><path d="M11 15h10"/></svg></div><div><span class="section-title">NON-COFFEE</span> <span class="section-sub">(HOT / ICE)</span></div></header>
+    <div class="items">
+      <div class="item"><div><div class="menu-en">Thai Milk Tea</div><div class="menu-th">ชาไทย</div></div><span></span><div class="price">70</div></div>
+      <div class="item"><div><div class="menu-en">Cocoa</div><div class="menu-th">โกโก้</div></div><span></span><div class="price">70</div></div>
+      <div class="item"><div><div class="menu-en">Lemon Tea</div><div class="menu-th">ชามะนาว</div></div><span></span><div class="price">75</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="sides">
+    <header class="section-header"><div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M11 5v22M8 5v8a3 3 0 0 0 6 0V5M22 5v22M19 5h6"/></svg></div><div><span class="section-title">SIDES &amp; DRINKS</span></div></header>
+    <div class="sides-grid">
+      <div class="side-mini"><div><div class="menu-en">Steamed Rice</div><div class="menu-th">ข้าวสวย</div></div><div class="price">15</div></div>
+      <div class="side-mini"><div><div class="menu-en">Fried Egg</div><div class="menu-th">ไข่ดาว</div></div><div class="price">15</div></div>
+      <div class="side-mini"><div><div class="menu-en">Soft Drink</div><div class="menu-th">น้ำอัดลม</div></div><div class="price">25</div></div>
+      <div class="side-mini"><div><div class="menu-en">Ice</div><div class="menu-th">น้ำแข็ง</div></div><div class="price">5</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="steak">
+    <header class="section-header"><div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M6 18c0-6 6-10 13-9 5 1 8 4 7 8-1 5-8 8-14 7-4-.5-6-3-6-6Z"/><path d="M16 15c2-1 5 0 5 2 0 3-5 4-7 2-2-1-1-3 2-4Z"/></svg></div><div><span class="section-title">STEAK</span></div></header>
+    <div class="items">
+      <div class="steak-row"><div class="menu-en">Sous vide Ribeye Steak</div><div class="menu-th">สเต็กริบอาย</div><span class="gram">220-250 g</span><div class="price">280</div></div>
+      <div class="steak-row"><div class="menu-en">Sous vide Picanha Steak</div><div class="menu-th">สเต็กพิคานย่า</div><span class="gram">220-250 g</span><div class="price">280</div></div>
+      <div class="steak-row"><div class="menu-en">Pork Steak</div><div class="menu-th">สเต็กหมู</div><span class="gram">150 g</span><div class="price">170</div></div>
+      <div class="steak-row"><div class="menu-en">Chicken Steak</div><div class="menu-th">สเต็กไก่</div><span class="gram">150 g</span><div class="price">150</div></div>
+      <div class="steak-row"><div class="menu-en">Grilled Sea Bass</div><div class="menu-th">ปลากะพงย่าง</div><span class="gram">150 g</span><div class="price">240</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="rice">
+    <header class="section-header"><div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M8 16h16c0 6-4 10-8 10s-8-4-8-10Z"/><path d="M10 16c0-4 3-7 6-7s6 3 6 7"/><path d="M12 23h8"/></svg></div><div><span class="section-title">RICE DISHES</span></div></header>
+    <div class="rice-grid">
+      <div>
+        <div class="rice-item"><div><div class="menu-en">Basil Pork with Rice</div><div class="menu-th">ข้าวราดกะเพราหมู (ชิ้น / สับ)</div></div><div class="price">75</div></div>
+        <div class="rice-item"><div><div class="menu-en">Basil Chicken with Rice</div><div class="menu-th">ข้าวราดกะเพราไก่</div></div><div class="price">75</div></div>
+        <div class="rice-item"><div><div class="menu-en">Basil Beef with Rice</div><div class="menu-th">ข้าวราดกะเพราเนื้อ (ชิ้น / สับ)</div></div><div class="price">95</div></div>
+        <div class="rice-item"><div><div class="menu-en">Basil Shrimp with Rice</div><div class="menu-th">ข้าวราดกะเพรากุ้ง</div></div><div class="price">110</div></div>
+        <div class="rice-item"><div><div class="menu-en">Fried Rice Pork / Chicken</div><div class="menu-th">ข้าวผัดหมู / ไก่</div></div><div class="price">80</div></div>
+      </div>
+      <div>
+        <div class="rice-item"><div><div class="menu-en">Fried Rice Beef</div><div class="menu-th">ข้าวผัดเนื้อ</div></div><div class="price">100</div></div>
+        <div class="rice-item"><div><div class="menu-en">Fried Rice Shrimp</div><div class="menu-th">ข้าวผัดกุ้ง</div></div><div class="price">115</div></div>
+        <div class="rice-item"><div><div class="menu-en">Fried Rice Crab</div><div class="menu-th">ข้าวผัดปู</div></div><div class="price">130</div></div>
+        <div class="rice-item"><div><div class="menu-en">Fried Rice Thai Sausage</div><div class="menu-th">ข้าวผัดแหนม</div></div><div class="price">110</div></div>
+        <div class="rice-item"><div><div class="menu-en">Omelette with Minced Pork on Rice</div><div class="menu-th">ข้าวไข่เจียวหมูสับ</div></div><div class="price">80</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-band"></div>
+  <div class="footer-note"><div class="thanks">Thank you ♡</div><div class="support">FOR SUPPORTING US</div></div>
+  <div class="footer"><span class="phone-icon">☎</span><span>085-917-8422</span></div>
+</main>
+</body>
+</html>
